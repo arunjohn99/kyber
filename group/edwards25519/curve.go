@@ -57,4 +57,18 @@ func (c *Curve) NewKey(stream cipher.Stream) kyber.Scalar {
 
 	secret := c.Scalar().SetBytes(scalar[:32])
 	return secret
+} 
+
+// Creates a new point from given bytes....
+func (c *Curve) PointFromBytes(b []byte) kyber.Point {
+	P := new(point)
+	P.UnmarshalBinary(b)
+	return P
+}
+
+
+func (c *Curve) ScalarFromBytes(b []byte) kyber.Scalar {
+	sc := &scalar{}
+	sc.UnmarshalBinary(b)
+	return sc
 }
